@@ -16,4 +16,6 @@ func main() {
 	fmt.Println(alex)
 	// %+v prints out all field names and values from alex
 	fmt.Printf("%+v", alex)
+	alex.firstName = "John"
+	fmt.Printf("%+v", alex)
 }
