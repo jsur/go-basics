@@ -43,3 +43,23 @@ func (pointerToPerson *person) updateName(newFirstName string) {
 func (p person) print() {
 	fmt.Printf("%+v", p)
 }
+
+/*
+
+Go value types:
+
+int
+float
+string
+bool
+struct
+
+Go reference types:
+
+slice
+map
+channel
+pointer
+func
+
+*/
