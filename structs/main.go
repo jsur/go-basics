@@ -2,20 +2,44 @@ package main
 
 import "fmt"
 
+type contactInfo struct {
+	email   string
+	zipCode int
+}
+
 type person struct {
 	firstName string
 	lastName  string
 	age       int
 	height    float32
 	isTrue    bool
+	contactInfo
 }
 
 func main() {
-	// alex := person{firstName: "Alex", lastName: "Anonymous"}
-	var alex person // zero value struct assigned to alex
-	fmt.Println(alex)
-	// %+v prints out all field names and values from alex
-	fmt.Printf("%+v", alex)
-	alex.firstName = "John"
-	fmt.Printf("%+v", alex)
+	jim := person{
+		firstName: "Jim",
+		lastName:  "Party",
+		contactInfo: contactInfo{
+			email:   "jim@jim.com",
+			zipCode: 94000,
+		},
+	}
+	jim.updateName("jimmy")
+	jim.print()
+}
+
+/*
+	Pointer receiver: This function can be called from either
+	the root type (person) or the pointer.
+	See example above, jim.updateName modifies original firstName in memory, not like when
+	a value is passed to a function where a copy is modified.
+	https://tour.golang.org/methods/4
+*/
+func (pointerToPerson *person) updateName(newFirstName string) {
+	(*pointerToPerson).firstName = newFirstName
+}
+
+func (p person) print() {
+	fmt.Printf("%+v", p)
 }
