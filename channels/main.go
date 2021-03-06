@@ -21,7 +21,19 @@ func main() {
 		go checkLink(link, c)
 	}
 
-	fmt.Println(<-c)
+	// a value coming through channel c is a blocking call
+	// this loop will block once a message comes and prints it out
+	for i := 0; i < len(links); i++ {
+		fmt.Println(<-c)
+	}
+
+	/*
+		could also be:
+
+		for range links {
+			fmt.Println(<-c)
+		}
+	*/
 }
 
 func checkLink(link string, c chan string) {
