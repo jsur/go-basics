@@ -30,7 +30,7 @@ func main() {
 		go func(link string) {
 			time.Sleep(3 * time.Second)
 			checkLink(link, c)
-		}(l)
+		}(l) // pass value to routine, not reference
 	}
 }
 
