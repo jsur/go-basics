@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"net/http"
 	"os"
 )
@@ -12,8 +13,6 @@ func main() {
 		fmt.Println("error: ", err)
 		os.Exit(1)
 	}
-
-	bs := make([]byte, 99999)
-	resp.Body.Read(bs)
-	fmt.Println(string(bs))
+	// destination is a Writer, src is a Reader
+	io.Copy(os.Stdout, resp.Body)
 }
